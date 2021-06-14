@@ -8,6 +8,8 @@ import Turbolinks from "turbolinks"
 import * as ActiveStorage from "@rails/activestorage"
 import "channels"
 
+import '../activity'
+
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
@@ -20,6 +22,7 @@ ActiveStorage.start()
 
 // External imports
 import "bootstrap";
+import 'semantic-ui-css/semantic.min.css';
 
 // Internal imports, e.g:
 // import { initSelect2 } from '../components/init_select2';

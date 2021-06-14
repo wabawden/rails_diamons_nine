@@ -10,9 +10,59 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 0) do
+ActiveRecord::Schema.define(version: 2021_06_14_141123) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "group_tiles", force: :cascade do |t|
+    t.integer "tile_id"
+    t.integer "tile_position"
+    t.text "text"
+    t.bigint "group_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["group_id"], name: "index_group_tiles_on_group_id"
+  end
+
+  create_table "groups", force: :cascade do |t|
+    t.string "question"
+    t.string "highlabel"
+    t.string "lowlabel"
+    t.integer "id_user"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "saved_group_notes", force: :cascade do |t|
+    t.integer "note_id"
+    t.string "type"
+    t.text "text"
+    t.bigint "saved_group_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["saved_group_id"], name: "index_saved_group_notes_on_saved_group_id"
+  end
+
+  create_table "saved_group_tiles", force: :cascade do |t|
+    t.integer "tile_id"
+    t.integer "tile_position"
+    t.text "text"
+    t.bigint "saved_group_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["saved_group_id"], name: "index_saved_group_tiles_on_saved_group_id"
+  end
+
+  create_table "saved_groups", force: :cascade do |t|
+    t.bigint "group_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["group_id"], name: "index_saved_groups_on_group_id"
+  end
+
+  add_foreign_key "group_tiles", "groups"
+  add_foreign_key "saved_group_notes", "saved_groups"
+  add_foreign_key "saved_group_tiles", "saved_groups"
+  add_foreign_key "saved_groups", "groups"
 end
