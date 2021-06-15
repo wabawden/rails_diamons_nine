@@ -1,6 +1,30 @@
 Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
+      get 'saved_group_tiles/index'
+      get 'saved_group_tiles/show'
+      get 'saved_group_tiles/create'
+    end
+  end
+  namespace :api do
+    namespace :v1 do
+      get 'saved_group_notes/index'
+      get 'saved_group_notes/show'
+      get 'saved_group_notes/create'
+    end
+  end
+  namespace :api do
+    namespace :v1 do
+      get 'saved_groups/index'
+      get 'saved_groups/show'
+      get 'saved_groups/create'
+    end
+  end
+  get 'saved_groups/index'
+  get 'saved_groups/show'
+  get 'saved_groups/create'
+  namespace :api do
+    namespace :v1 do
       get 'group_tiles/index'
       get 'group_tiles/show'
       get 'group_tiles/create'
@@ -13,6 +37,10 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :groups, only: [ :index, :show, :create ] do
         resources :group_tiles, only: [ :index, :show, :create ]
+        resources :saved_groups, only: [ :index, :show, :create ] do
+          resources :saved_group_notes, only: [ :index, :show, :create ]
+          resources :saved_group_tiles, only: [ :index, :show, :create ]
+        end
       end
     end
   end

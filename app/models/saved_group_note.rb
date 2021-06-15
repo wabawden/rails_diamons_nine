@@ -1,3 +1,3 @@
 class SavedGroupNote < ApplicationRecord
-  belongs_to :savedgroup
+  belongs_to :saved_group
 end
