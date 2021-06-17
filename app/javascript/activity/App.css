@@ -1,8 +1,13 @@
-.App {
+  .window {
     display: grid;
     grid-template-columns: 400px auto;
   }
   
+  .navbar {
+    height: 50px;
+    background-color: blueviolet;
+  }
+
   .center {
     display: grid;
     grid-template-columns: 732px auto;

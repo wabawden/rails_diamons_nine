@@ -1,4 +1,4 @@
-import { FETCH_TILE_ACTIVITY, ADD_TILE_NOTE, ADD_POSITION_NOTE, DELETE_NOTE, FETCH_STATE } from './types';
+import { SIGN_IN, SIGN_OUT, FETCH_TILE_ACTIVITY, ADD_TILE_NOTE, ADD_POSITION_NOTE, DELETE_NOTE, FETCH_STATE } from './types';
 
 export const fetchTileActivity = () => {
     console.log("hello from fetchTileActivity")
@@ -33,3 +33,16 @@ export const fetchState = () => {
         type: FETCH_STATE
     }
 }
+
+export const signIn = (userId) => {
+    return {
+      type: SIGN_IN,
+      payload: userId
+    };
+  };
+  
+  export const signOut = () => {
+    return {
+      type: SIGN_OUT
+    };
+  };

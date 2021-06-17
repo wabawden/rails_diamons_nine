@@ -31,6 +31,7 @@ Rails.application.routes.draw do
     end
   end
   root to: 'pages#home'
+  get '/new', to: 'pages#home'
   get '/activity', to: 'pages#home'
 
   namespace :api, defaults: { format: :json } do
