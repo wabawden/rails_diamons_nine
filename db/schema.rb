@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_14_141123) do
+ActiveRecord::Schema.define(version: 2021_06_17_153729) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,9 +29,9 @@ ActiveRecord::Schema.define(version: 2021_06_14_141123) do
     t.string "question"
     t.string "highlabel"
     t.string "lowlabel"
-    t.integer "id_user"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "id_user"
   end
 
   create_table "saved_group_notes", force: :cascade do |t|

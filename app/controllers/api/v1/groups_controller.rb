@@ -10,5 +10,13 @@ class Api::V1::GroupsController < ActionController::Base
     end
 
     def create
+        @group = Group.create(group_params)
+        render json: @group
     end
+
+    private
+    
+    def group_params
+      params.require(:group).permit(:question, :highlabel, :lowlabel, :id_user)
+    end 
 end

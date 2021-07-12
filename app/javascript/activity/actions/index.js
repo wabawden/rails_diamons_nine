@@ -1,4 +1,7 @@
-import { SIGN_IN, SIGN_OUT, FETCH_TILE_ACTIVITY, ADD_TILE_NOTE, ADD_POSITION_NOTE, DELETE_NOTE, FETCH_STATE } from './types';
+import { SIGN_IN, SIGN_OUT, FETCH_TILE_ACTIVITY, ADD_TILE_NOTE, ADD_POSITION_NOTE, DELETE_NOTE, FETCH_STATE, NEW_ACTIVITY } from './types';
+
+const BASE_URL = '../api/v1/';
+
 
 export const fetchTileActivity = () => {
     console.log("hello from fetchTileActivity")
@@ -46,3 +49,24 @@ export const signIn = (userId) => {
       type: SIGN_OUT
     };
   };
+
+  export const newActivity = (question, highlabel, lowlabel, id_user) => {
+    const url = `${BASE_URL}groups`;
+    const body = { question, highlabel, lowlabel, id_user }; // ES6 destructuring
+    const csrfToken = document.querySelector('meta[name="csrf-token"]').attributes.content.value;
+    const promise1 = fetch(url, {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'X-CSRF-Token': csrfToken
+      },
+      credentials: 'same-origin',
+      body: JSON.stringify(body)
+    }).then(r => r.json());
+  
+    return {
+      type: NEW_ACTIVITY,
+      payload: promise1 // Will be resolved by redux-promise
+    };
+  }
